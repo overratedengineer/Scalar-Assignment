@@ -33,77 +33,103 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-[#2874f0] sticky top-0 z-50 shadow-md">
-        <div className="max-w-[1248px] mx-auto px-3 md:px-4 flex items-center justify-between h-14 gap-2 md:gap-8">
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-white p-1"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menu"
-          >
-            <Menu size={22} />
-          </button>
+      <header className="bg-white sticky top-0 z-50 shadow-sm">
+        {/* Row 1: Logo, Travel, Location, Coins */}
+        <div className="border-b border-gray-100">
+          <div className="max-w-[1248px] mx-auto px-3 md:px-4 flex items-center justify-between h-[46px]">
+            {/* Left: Logo + Travel */}
+            <div className="flex items-center gap-3">
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden text-gray-700 p-1"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Menu"
+              >
+                <Menu size={20} />
+              </button>
 
-          {/* Logo Section */}
-          <div className="flex flex-col items-start shrink-0">
-            <Link to="/" className="flex flex-col items-start">
-              <img 
-                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" 
-                alt="Flipkart" 
-                className="h-5 italic" 
-              />
-              <div className="flex items-center gap-0.5 -mt-0.5">
-                <span className="text-[11px] font-medium italic text-white opacity-90">Explore</span>
-                <span className="text-[11px] font-bold italic text-[#ffe500]">Plus</span>
-                <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png" alt="plus" className="h-2.5" />
+              {/* Flipkart Logo Pill */}
+              <Link to="/" className="flex items-center bg-[#FFE500] hover:bg-[#ffd700] transition-colors rounded-full px-4 py-1.5">
+                <img
+                  src="https://rukminim2.flixcart.com/fk-p-flap/52/44/image/d2ecfddf891a3922.png?q=60"
+                  alt="Flipkart"
+                  className="h-[20px] object-contain"
+                />
+              </Link>
+
+              {/* Travel Button */}
+              <button className="hidden md:flex items-center gap-1.5 bg-gray-100 hover:bg-gray-200 transition-colors rounded-full px-4 py-1.5">
+                <Plane size={14} className="text-red-500" />
+                <span className="text-[13px] font-medium text-gray-800">Travel</span>
+              </button>
+            </div>
+
+            {/* Right: Location + Coins */}
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-1 text-[13px] text-gray-600 cursor-pointer hover:text-[#2874f0]">
+                <MapPin size={14} className="text-gray-400" />
+                <span className="font-bold text-gray-900">140413</span>
+                <span className="text-[#2874f0] font-medium">Select delivery location</span>
+                <ChevronDown size={12} className="text-gray-400" />
               </div>
-            </Link>
+              <div className="flex items-center gap-1 text-[13px] text-gray-600">
+                <span className="text-yellow-500">●</span>
+                <span className="font-medium">0</span>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Search Bar - Desktop */}
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[600px] relative">
-            <input
-              type="text"
-              placeholder="Search for products, brands and more"
-              className="w-full bg-white text-black pl-4 pr-12 py-2 rounded-sm focus:outline-none text-[14px] shadow-sm"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#2874f0]">
-              <Search size={20} strokeWidth={2.5} />
-            </button>
+        {/* Row 2: Search, User, More, Cart */}
+        <div className="max-w-[1248px] mx-auto px-3 md:px-4 flex items-center justify-between h-[46px] gap-4">
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[680px] relative">
+            <div className="w-full flex items-center border border-gray-300 rounded-[4px] hover:border-gray-400 focus-within:border-[#2874f0] transition-colors">
+              <div className="pl-3 text-gray-400">
+                <Search size={18} />
+              </div>
+              <input
+                type="text"
+                placeholder="Search for Products, Brands and More"
+                className="w-full bg-transparent text-gray-900 pl-3 pr-4 py-2 focus:outline-none text-[14px] placeholder-gray-400"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </form>
 
           {/* Mobile Search Toggle */}
           <button
-            className="md:hidden text-white p-1 ml-auto"
+            className="md:hidden text-gray-700 p-1 ml-auto"
             onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
             aria-label="Search"
           >
             <Search size={20} />
           </button>
 
-          {/* Navigation Section */}
-          <nav className="flex items-center gap-3 md:gap-8 text-white font-bold text-[15px]">
+          {/* Right Nav Items */}
+          <nav className="flex items-center gap-5 text-[14px] text-gray-700 font-medium">
+            {/* User Dropdown */}
             <div className="group relative hidden md:block">
               {user ? (
                 <>
-                  <button className="flex items-center gap-1 text-white font-bold hover:text-gray-100">
+                  <button className="flex items-center gap-1.5 text-gray-700 hover:text-[#2874f0]">
+                    <User size={18} className="text-gray-500" />
                     <span>{user.name}</span>
-                    <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                    <ChevronDown size={12} className="group-hover:rotate-180 transition-transform text-gray-400" />
                   </button>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block w-64">
-                    <div className="bg-white rounded-sm shadow-2xl border border-gray-100 text-gray-800 py-2">
-                      <div className="hover:bg-gray-50 px-4 py-3 border-b flex items-center justify-between">
-                        <span className="font-bold">My Profile</span>
+                  <div className="absolute top-full right-0 pt-2 hidden group-hover:block w-56">
+                    <div className="bg-white rounded-md shadow-xl border border-gray-100 text-gray-800 py-1">
+                      <div className="hover:bg-gray-50 px-4 py-2.5 border-b font-semibold text-sm">
+                        My Profile
                       </div>
-                      <div className="hover:bg-gray-50 px-4 py-3 flex items-center gap-4 cursor-pointer" onClick={() => navigate('/orders')}>
-                        <ShoppingCart size={18} className="text-[#2874f0]" />
-                        <span>Orders</span>
+                      <div className="hover:bg-gray-50 px-4 py-2.5 flex items-center gap-3 cursor-pointer text-sm" onClick={() => navigate('/orders')}>
+                        <Package size={16} className="text-[#2874f0]" />
+                        Orders
                       </div>
-                      <div className="hover:bg-gray-50 px-4 py-3 flex items-center gap-4 cursor-pointer" onClick={logout}>
-                        <User size={18} className="text-[#2874f0]" />
-                        <span>Logout</span>
+                      <div className="hover:bg-gray-50 px-4 py-2.5 flex items-center gap-3 cursor-pointer text-sm" onClick={logout}>
+                        <User size={16} className="text-[#2874f0]" />
+                        Logout
                       </div>
                     </div>
                   </div>
@@ -111,18 +137,18 @@ export default function Header() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => navigate('/login')} className="bg-white text-[#2874f0] px-4 lg:px-6 py-1 rounded-sm hover:bg-gray-100 transition-colors text-sm lg:text-[15px]">
+                    <button onClick={() => navigate('/login')} className="text-[#2874f0] font-semibold hover:underline text-sm">
                       Login
                     </button>
-                    <button onClick={defaultLogin} className="bg-[#FFE500] text-black px-2 lg:px-4 py-1 rounded-sm hover:bg-[#FFD700] transition-colors text-sm lg:text-[12px] shadow-sm font-bold">
+                    <button onClick={defaultLogin} className="bg-[#FFE500] text-gray-900 px-3 py-1 rounded-full hover:bg-[#FFD700] transition-colors text-[11px] font-bold">
                       Auto Login
                     </button>
                   </div>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 hidden group-hover:block w-64">
-                    <div className="bg-white rounded-sm shadow-2xl border border-gray-100 text-gray-800 py-2">
-                      <div className="px-4 py-3 border-b flex justify-between items-center">
-                        <span className="font-bold">New Customer?</span>
-                        <Link to="/signup" className="text-[#2874f0] cursor-pointer">Sign Up</Link>
+                  <div className="absolute top-full right-0 pt-2 hidden group-hover:block w-56">
+                    <div className="bg-white rounded-md shadow-xl border border-gray-100 text-gray-800 py-1">
+                      <div className="px-4 py-2.5 border-b flex justify-between items-center text-sm">
+                        <span className="font-semibold">New Customer?</span>
+                        <Link to="/signup" className="text-[#2874f0]">Sign Up</Link>
                       </div>
                     </div>
                   </div>
@@ -130,98 +156,75 @@ export default function Header() {
               )}
             </div>
 
-            <Link to="/" className="hover:text-gray-100 hidden lg:block">
-              Become a Seller
-            </Link>
-
+            {/* More Dropdown */}
             <div className="group relative hidden lg:block">
-              <button className="flex items-center gap-1 hover:text-gray-100 py-4 -my-4">
+              <button className="flex items-center gap-1 hover:text-[#2874f0] py-3 -my-3">
                 <span>More</span>
-                <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                <ChevronDown size={12} className="group-hover:rotate-180 transition-transform text-gray-400" />
               </button>
-              <div className="absolute top-full -left-4 pt-2 hidden group-hover:block w-48">
-                <div className="bg-white rounded-sm shadow-2xl border border-gray-100 text-gray-800 py-2">
-                  <Link 
-                    to={user ? "/wishlist" : "#"} 
-                    onClick={(e) => handleRestrictedClick(e, '/wishlist')} 
-                    className="hover:bg-gray-50 px-4 py-3 flex items-center gap-3 font-medium transition-colors"
+              <div className="absolute top-full right-0 pt-2 hidden group-hover:block w-48">
+                <div className="bg-white rounded-md shadow-xl border border-gray-100 text-gray-800 py-1">
+                  <Link
+                    to={user ? "/wishlist" : "#"}
+                    onClick={(e) => handleRestrictedClick(e, '/wishlist')}
+                    className="hover:bg-gray-50 px-4 py-2.5 flex items-center gap-3 text-sm"
                   >
-                    <Heart size={16} className="text-[#2874f0]" />
-                    <span>Wishlist</span>
+                    <Heart size={14} className="text-[#2874f0]" />
+                    Wishlist
+                  </Link>
+                  <Link
+                    to={user ? "/orders" : "#"}
+                    onClick={(e) => handleRestrictedClick(e, '/orders')}
+                    className="hover:bg-gray-50 px-4 py-2.5 flex items-center gap-3 text-sm"
+                  >
+                    <Package size={14} className="text-[#2874f0]" />
+                    Orders
                   </Link>
                 </div>
               </div>
             </div>
 
-            <Link to={user ? "/orders" : "#"} onClick={(e) => handleRestrictedClick(e, '/orders')} className="hidden lg:flex items-center gap-1 md:gap-2 hover:text-gray-100 relative">
-              <Package size={20} />
-              <span>Orders</span>
-            </Link>
-
-            <Link to={user ? "/cart" : "#"} onClick={(e) => handleRestrictedClick(e, '/cart')} className="flex items-center gap-1 md:gap-2 hover:text-gray-100 relative">
-              <ShoppingCart size={20} />
+            {/* Cart */}
+            <Link to={user ? "/cart" : "#"} onClick={(e) => handleRestrictedClick(e, '/cart')} className="flex items-center gap-1.5 hover:text-[#2874f0] relative">
+              <div className="relative">
+                <ShoppingCart size={20} />
+                {summary.itemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[9px] rounded-full w-4 h-4 flex items-center justify-center font-bold">
+                    {summary.itemCount}
+                  </span>
+                )}
+              </div>
               <span className="hidden sm:inline">Cart</span>
-              {summary.itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 sm:-right-2 bg-[#ff6161] text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center border border-[#2874f0] font-bold">
-                  {summary.itemCount}
-                </span>
-              )}
             </Link>
           </nav>
         </div>
 
         {/* Mobile Search Bar - Expandable */}
         {mobileSearchOpen && (
-          <div className="md:hidden px-3 pb-3 bg-[#2874f0]">
+          <div className="md:hidden px-3 pb-3 bg-white border-t border-gray-100">
             <form onSubmit={handleSearch} className="relative">
-              <input
-                type="text"
-                placeholder="Search for products, brands and more"
-                className="w-full bg-white text-black pl-4 pr-12 py-2.5 rounded-sm focus:outline-none text-[14px] shadow-sm"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                autoFocus
-              />
-              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#2874f0]">
-                <Search size={20} strokeWidth={2.5} />
-              </button>
+              <div className="flex items-center border border-gray-300 rounded-[4px]">
+                <div className="pl-3 text-gray-400">
+                  <Search size={18} />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search for Products, Brands and More"
+                  className="w-full bg-transparent text-gray-900 pl-3 pr-4 py-2.5 focus:outline-none text-[14px]"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  autoFocus
+                />
+              </div>
             </form>
           </div>
         )}
-
-        {/* Sub-header (Location & Travel) */}
-        <div className="bg-white border-b border-gray-200 hidden md:block">
-          <div className="max-w-[1248px] mx-auto px-4 h-10 flex items-center justify-between text-[13px]">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-1 text-gray-600">
-                <MapPin size={14} className="text-gray-400" />
-                <span>Deliver to <span className="font-bold text-gray-900">Mumbai 400001</span></span>
-                <ChevronDown size={12} className="text-gray-400" />
-              </div>
-              <div className="h-4 w-[1px] bg-gray-300"></div>
-              <button className="flex items-center gap-2 font-bold text-gray-700 hover:text-[#2874f0]">
-                <Plane size={16} className="text-[#fb641b]" />
-                Travel
-              </button>
-            </div>
-            <div className="flex items-center gap-4 text-gray-500">
-              <span>Offer Zone</span>
-              <span>Gift Cards</span>
-              <span>Help Center</span>
-            </div>
-          </div>
-        </div>
       </header>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[60] lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          {/* Sidebar */}
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
           <div className="absolute top-0 left-0 bottom-0 w-[280px] bg-white mobile-menu-enter flex flex-col">
             <div className="bg-[#2874f0] p-5 flex items-center justify-between text-white">
               <div>
@@ -233,11 +236,7 @@ export default function Header() {
               </button>
             </div>
             <div className="flex-1 overflow-y-auto py-2">
-              <Link
-                to="/"
-                className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link to="/" className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium" onClick={() => setMobileMenuOpen(false)}>
                 <User size={18} className="text-[#2874f0]" />
                 My Profile
               </Link>
@@ -245,11 +244,7 @@ export default function Header() {
                 to={user ? "/cart" : "#"}
                 className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium"
                 onClick={(e) => {
-                  if (!user) {
-                    handleRestrictedClick(e, '/cart');
-                  } else {
-                    setMobileMenuOpen(false);
-                  }
+                  if (!user) { handleRestrictedClick(e, '/cart'); } else { setMobileMenuOpen(false); }
                 }}
               >
                 <ShoppingCart size={18} className="text-[#2874f0]" />
@@ -264,11 +259,7 @@ export default function Header() {
                 to={user ? "/wishlist" : "#"}
                 className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium"
                 onClick={(e) => {
-                  if (!user) {
-                    handleRestrictedClick(e, '/wishlist');
-                  } else {
-                    setMobileMenuOpen(false);
-                  }
+                  if (!user) { handleRestrictedClick(e, '/wishlist'); } else { setMobileMenuOpen(false); }
                 }}
               >
                 <Heart size={18} className="text-[#2874f0]" />
@@ -278,21 +269,13 @@ export default function Header() {
                 to={user ? "/orders" : "#"}
                 className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium"
                 onClick={(e) => {
-                  if (!user) {
-                    handleRestrictedClick(e, '/orders');
-                  } else {
-                    setMobileMenuOpen(false);
-                  }
+                  if (!user) { handleRestrictedClick(e, '/orders'); } else { setMobileMenuOpen(false); }
                 }}
               >
                 <Package size={18} className="text-[#2874f0]" />
                 My Orders
               </Link>
-              <Link
-                to="/"
-                className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <Link to="/" className="flex items-center gap-4 px-5 py-3.5 hover:bg-gray-50 text-gray-800 font-medium" onClick={() => setMobileMenuOpen(false)}>
                 <Sparkles size={18} className="text-[#2874f0]" />
                 Flipkart Plus Zone
               </Link>
@@ -349,7 +332,7 @@ export default function Header() {
             <div className="p-6 text-center">
               <p className="text-gray-700 mb-6 font-medium">Please login to access this feature. Would you like to use the Default Login?</p>
               <div className="flex flex-col gap-3">
-                <button 
+                <button
                   onClick={async () => {
                     await defaultLogin();
                     setShowLoginPrompt(false);
@@ -359,7 +342,7 @@ export default function Header() {
                 >
                   Use Default Login
                 </button>
-                <button 
+                <button
                   onClick={() => {
                     setShowLoginPrompt(false);
                     navigate('/login');

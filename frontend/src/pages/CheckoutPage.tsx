@@ -135,8 +135,8 @@ export default function CheckoutPage() {
                       <h4 className="text-xs md:text-sm font-medium line-clamp-2 md:line-clamp-1">{item.product.name}</h4>
                       <div className="text-[10px] md:text-xs text-gray-500">Qty: {item.quantity}</div>
                       <div className="flex items-center gap-2 mt-0.5 md:mt-1">
-                        <span className="text-gray-500 line-through text-[10px] md:text-xs">₹{(item.product.mrp * item.quantity).toLocaleString()}</span>
-                        <span className="text-sm md:text-base font-bold">₹{(item.product.price * item.quantity).toLocaleString()}</span>
+                        <span className="text-gray-500 line-through text-[10px] md:text-xs">₹{(item.product.mrp * item.quantity).toLocaleString("en-IN")}</span>
+                        <span className="text-sm md:text-base font-bold">₹{(item.product.price * item.quantity).toLocaleString("en-IN")}</span>
                       </div>
                     </div>
                   </div>
@@ -195,11 +195,11 @@ export default function CheckoutPage() {
             <div className="p-3 md:p-4 flex flex-col gap-3 md:gap-4 text-gray-800 text-sm md:text-base">
               <div className="flex justify-between">
                 <span>Price ({summary.itemCount} items)</span>
-                <span>₹{summary.totalMrp.toLocaleString()}</span>
+                <span>₹{summary.totalMrp.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex justify-between">
                 <span>Discount</span>
-                <span className="text-[#388e3c]">- ₹{summary.discount.toLocaleString()}</span>
+                <span className="text-[#388e3c]">- ₹{summary.discount.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery Charges</span>
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between text-base md:text-lg font-bold border-t border-dashed pt-3 md:pt-4 mt-1 md:mt-2">
                 <span>Total Amount</span>
-                <span>₹{summary.total.toLocaleString()}</span>
+                <span>₹{summary.total.toLocaleString("en-IN")}</span>
               </div>
             </div>
           </div>

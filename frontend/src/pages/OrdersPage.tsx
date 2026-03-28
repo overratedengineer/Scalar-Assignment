@@ -102,7 +102,7 @@ export default function OrdersPage() {
                           {item.product?.name}
                         </h4>
                         <p className="text-gray-500 text-xs md:text-sm mt-1">Quantity: {item.quantity}</p>
-                        <p className="font-bold text-sm md:text-base mt-2">₹{(item.price * item.quantity).toLocaleString()}</p>
+                        <p className="font-bold text-sm md:text-base mt-2">₹{(item.price * item.quantity).toLocaleString("en-IN")}</p>
                       </div>
 
                       <div className="hidden md:flex flex-col flex-1 gap-2">
@@ -134,7 +134,7 @@ export default function OrdersPage() {
                           {order.status} • {new Date(order.createdAt).toLocaleDateString()}
                         </span>
                      </div>
-                     <span className="font-bold text-sm">₹{order.totalAmount.toLocaleString()}</span>
+                     <span className="font-bold text-sm">₹{order.totalAmount.toLocaleString("en-IN")}</span>
                   </div>
                 </Link>
               </div>

@@ -30,7 +30,12 @@ router.get('/', async (req, res, next) => {
     }
     
     if (category) {
-      where.category = { slug: category };
+      where.category = {
+        OR: [
+          { slug: category },
+          { name: { equals: category, mode: 'insensitive' } }
+        ]
+      };
     }
 
     const [products, totalCount] = await Promise.all([

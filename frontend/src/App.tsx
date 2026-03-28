@@ -120,7 +120,7 @@ function App() {
                 <span className="flex items-center gap-1.5 md:gap-2 font-bold"><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/help_633910.svg" alt="" className="w-3 md:w-4" /> Help Center</span>
               </div>
               <p className="font-medium">© 2007-2026 Flipkart.com</p>
-              <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/payment-method_69e7bc.svg" alt="payments" className="h-3 md:h-4" />
+              <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/payment-method-69e7ec.svg" alt="payments" className="h-3 md:h-4" />
             </div>
           </footer>
         </div>

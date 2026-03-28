@@ -10,11 +10,31 @@ export default function CartPage() {
     return (
       <div className="bg-[#f1f3f6] min-h-screen flex items-center justify-center p-4">
         <div className="bg-white p-6 md:p-10 shadow-sm rounded-sm text-center max-w-md w-full">
-          <img 
-            src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/empty-cart_ee6143.png" 
-            alt="empty cart" 
-            className="w-36 md:w-48 mx-auto mb-4 md:mb-6"
-          />
+          <div className="w-40 h-40 md:w-52 md:h-52 mx-auto mb-4 md:mb-6 flex items-center justify-center">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+              {/* Cart handle */}
+              <path d="M55 60 L45 30" stroke="#d5d5d5" strokeWidth="6" strokeLinecap="round"/>
+              {/* Cart body */}
+              <path d="M40 65 L50 135 C52 145 58 150 68 150 L145 150 C155 150 160 145 162 135 L172 65 Z" fill="#e8e8e8" stroke="#d5d5d5" strokeWidth="3"/>
+              {/* Decorative lines on right */}
+              <line x1="178" y1="80" x2="195" y2="80" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round"/>
+              <line x1="175" y1="100" x2="198" y2="100" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round"/>
+              <line x1="178" y1="120" x2="195" y2="120" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round"/>
+              {/* Decorative lines on left */}
+              <line x1="5" y1="100" x2="28" y2="100" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round"/>
+              <line x1="10" y1="120" x2="25" y2="120" stroke="#e8e8e8" strokeWidth="4" strokeLinecap="round"/>
+              {/* Eyes */}
+              <ellipse cx="90" cy="105" rx="5" ry="12" fill="#d5d5d5"/>
+              <ellipse cx="125" cy="105" rx="5" ry="12" fill="#d5d5d5"/>
+              {/* Smile */}
+              <path d="M88 125 Q107 140 127 125" stroke="#d5d5d5" strokeWidth="4" strokeLinecap="round" fill="none"/>
+              {/* Wheels */}
+              <circle cx="80" cy="168" r="12" fill="#d5d5d5"/>
+              <circle cx="80" cy="168" r="5" fill="#f1f3f6"/>
+              <circle cx="140" cy="168" r="12" fill="#d5d5d5"/>
+              <circle cx="140" cy="168" r="5" fill="#f1f3f6"/>
+            </svg>
+          </div>
           <h2 className="text-base md:text-lg font-bold mb-2">Your cart is empty!</h2>
           <p className="text-gray-500 text-xs md:text-sm mb-4 md:mb-6">Add items to it now.</p>
           <Link to="/" className="bg-[#2874f0] text-white px-8 md:px-12 py-2.5 md:py-3 font-bold rounded-sm shadow-md inline-block text-sm md:text-base">
@@ -75,8 +95,8 @@ export default function CartPage() {
                   </Link>
                   <div className="text-[10px] md:text-xs text-gray-500">Seller: RetailNet</div>
                   <div className="flex items-center gap-2 md:gap-3 mt-1 md:mt-2">
-                    <span className="text-gray-500 line-through text-xs md:text-sm">₹{(item.product.mrp * item.quantity).toLocaleString()}</span>
-                    <span className="text-base md:text-lg font-bold">₹{(item.product.price * item.quantity).toLocaleString()}</span>
+                    <span className="text-gray-500 line-through text-xs md:text-sm">₹{(item.product.mrp * item.quantity).toLocaleString("en-IN")}</span>
+                    <span className="text-base md:text-lg font-bold">₹{(item.product.price * item.quantity).toLocaleString("en-IN")}</span>
                     <span className="text-[#388e3c] font-bold text-xs md:text-sm">{Math.round(((item.product.mrp - item.product.price) / item.product.mrp) * 100)}% Off</span>
                   </div>
                   <div className="flex gap-4 md:gap-6 mt-2 md:mt-4">
@@ -115,11 +135,11 @@ export default function CartPage() {
             <div className="p-3 md:p-4 flex flex-col gap-3 md:gap-4 text-gray-800 text-sm md:text-base">
               <div className="flex justify-between">
                 <span>Price ({summary.itemCount} items)</span>
-                <span>₹{summary.totalMrp.toLocaleString()}</span>
+                <span>₹{summary.totalMrp.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex justify-between">
                 <span>Discount</span>
-                <span className="text-[#388e3c]">- ₹{summary.discount.toLocaleString()}</span>
+                <span className="text-[#388e3c]">- ₹{summary.discount.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery Charges</span>
@@ -127,10 +147,10 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between text-base md:text-lg font-bold border-t border-dashed pt-3 md:pt-4 mt-1 md:mt-2">
                 <span>Total Amount</span>
-                <span>₹{summary.total.toLocaleString()}</span>
+                <span>₹{summary.total.toLocaleString("en-IN")}</span>
               </div>
               <div className="text-[#388e3c] font-bold text-xs md:text-sm border-t border-dashed pt-3 md:pt-4">
-                You will save ₹{summary.discount.toLocaleString()} on this order
+                You will save ₹{summary.discount.toLocaleString("en-IN")} on this order
               </div>
             </div>
           </div>
@@ -145,7 +165,7 @@ export default function CartPage() {
       {/* Mobile Fixed Bottom Place Order */}
       <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white shadow-[0_-4px_12px_rgba(0,0,0,0.1)] z-40 p-3 flex items-center justify-between">
         <div>
-          <span className="text-lg font-bold">₹{summary.total.toLocaleString()}</span>
+          <span className="text-lg font-bold">₹{summary.total.toLocaleString("en-IN")}</span>
           <p className="text-[10px] text-[#2874f0] font-bold">View price details</p>
         </div>
         <button 

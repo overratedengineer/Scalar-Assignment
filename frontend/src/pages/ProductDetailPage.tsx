@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../api';
 import { useCart, Product } from '../context/CartContext';
-import { Star, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
+import { Star, ShoppingCart, Zap, ShieldCheck, Truck, RotateCcw, ArrowDown } from 'lucide-react';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -113,26 +113,26 @@ export default function ProductDetailPage() {
             <div className="bg-[#388e3c] text-white text-[10px] md:text-xs font-bold px-1.5 py-0.5 rounded flex items-center gap-0.5">
               {product.rating} <Star size={10} fill="white" className="md:w-3 md:h-3" />
             </div>
-            <span className="text-gray-500 text-xs md:text-sm font-medium">{product.ratingCount.toLocaleString()} Ratings & {Math.floor(product.ratingCount/10).toLocaleString()} Reviews</span>
+            <span className="text-gray-500 text-xs md:text-sm font-medium">{product.ratingCount.toLocaleString("en-IN")} Ratings & {Math.floor(product.ratingCount/10).toLocaleString("en-IN")} Reviews</span>
             <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png" alt="assured" className="h-4 md:h-5" />
           </div>
 
           <div className="flex items-baseline gap-2 md:gap-3">
-            <span className="text-2xl md:text-3xl font-bold">₹{product.price.toLocaleString()}</span>
-            <span className="text-gray-500 line-through text-sm md:text-base">₹{(product.mrp || product.price).toLocaleString()}</span>
+            <span className="text-2xl md:text-3xl font-bold">₹{product.price.toLocaleString("en-IN")}</span>
+            <span className="text-gray-500 line-through text-sm md:text-base">₹{(product.mrp || product.price).toLocaleString("en-IN")}</span>
             <span className="text-[#388e3c] font-bold text-sm md:text-base">{Math.round((((product.mrp || product.price) - product.price) / (product.mrp || product.price)) * 100)}% off</span>
           </div>
 
           {/* Offers */}
           <div className="flex flex-col gap-2 mt-1 md:mt-2">
             <h3 className="font-bold text-sm">Available offers</h3>
-            <div className="flex items-start gap-2 text-xs md:text-sm">
-              <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/offertag_7ad934.png" alt="tag" className="w-3 md:w-4 mt-1" />
+            <div className="flex items-center gap-2 text-xs md:text-sm">
+              <span className="text-base md:text-lg shrink-0">🏦</span>
               <span><span className="font-bold">Bank Offer</span> 5% Unlimited Cashback on Flipkart Axis Bank Credit Card <span className="text-[#2874f0] font-bold">T&C</span></span>
             </div>
-            <div className="flex items-start gap-2 text-xs md:text-sm">
-              <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/offertag_7ad934.png" alt="tag" className="w-3 md:w-4 mt-1" />
-              <span><span className="font-bold">Special Price</span> Get extra ₹{Math.floor(product.price * 0.1).toLocaleString()} off (price inclusive of cashback/coupon) <span className="text-[#2874f0] font-bold">T&C</span></span>
+            <div className="flex items-center gap-2 text-xs md:text-sm">
+              <ArrowDown size={16} className="text-[#388e3c] shrink-0" />
+              <span><span className="font-bold">Special Price</span> Get extra ₹{Math.floor(product.price * 0.1).toLocaleString("en-IN")} off (price inclusive of cashback/coupon) <span className="text-[#2874f0] font-bold">T&C</span></span>
             </div>
           </div>
 

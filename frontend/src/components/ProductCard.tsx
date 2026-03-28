@@ -66,8 +66,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className="flex items-center gap-1 md:gap-2 mt-0.5 md:mt-1 flex-wrap">
-          <span className="text-sm md:text-base font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
-          <span className="text-gray-400 text-[10px] md:text-xs line-through">₹{(product.mrp || product.price).toLocaleString()}</span>
+          <span className="text-sm md:text-base font-bold text-gray-900">₹{product.price.toLocaleString("en-IN")}</span>
+          <span className="text-gray-400 text-[10px] md:text-xs line-through">₹{(product.mrp || product.price).toLocaleString("en-IN")}</span>
           <span className="text-[10px] md:text-[12px] font-bold text-[#388e3c]">
             {Math.round((((product.mrp || product.price) - product.price) / (product.mrp || product.price)) * 100)}% off
           </span>
