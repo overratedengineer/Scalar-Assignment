@@ -8,7 +8,13 @@ const app = express();
 
 // Global Middlewares
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173', 
+    'https://willowy-sunshine-1e4e12.netlify.app', 
+    'https://willowy-sunshine-1e4e12.netlify.app/',
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL ? process.env.FRONTEND_URL.replace(/\/$/, '') : null
+  ].filter(Boolean),
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
