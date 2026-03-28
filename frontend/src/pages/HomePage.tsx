@@ -234,7 +234,7 @@ export default function HomePage() {
                 <Rocket size={28} className="text-[#2874f0]" />
               </div>
               <p className="text-gray-800 font-semibold text-[15px] mb-2">This feature is coming soon!</p>
-              <p className="text-gray-500 text-[13px] leading-relaxed">We're working hard to bring this to you. Stay tuned for updates after Scalar Lab accepts us! 🚀</p>
+              <p className="text-gray-500 text-[13px] leading-relaxed">We're working hard to bring this to you. Stay tuned for updates after Scaler Lab accepts us! </p>
               <button
                 onClick={() => setShowComingSoon(false)}
                 className="mt-5 bg-[#2874f0] hover:bg-[#1a5abd] text-white font-bold py-2.5 px-8 rounded-full text-[13px] transition-colors"
