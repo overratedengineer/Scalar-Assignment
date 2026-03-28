@@ -49,12 +49,13 @@ export default function Header() {
               </button>
 
               {/* Flipkart Logo Pill */}
-              <Link to="/" className="flex items-center bg-[#FFE500] hover:bg-[#ffd700] transition-colors rounded-full px-4 py-1.5">
+              <Link to="/" className="flex items-center gap-1.5 bg-[#FFE500] hover:bg-[#ffd700] transition-colors rounded-full px-4 py-1.5">
                 <img
                   src="https://rukminim2.flixcart.com/fk-p-flap/52/44/image/d2ecfddf891a3922.png?q=60"
                   alt="Flipkart"
                   className="h-[20px] object-contain"
                 />
+                <span className="text-[15px] font-bold text-[#2874f0]">Flipkart</span>
               </Link>
 
               {/* Travel Button */}
@@ -74,17 +75,17 @@ export default function Header() {
               </div>
               <div className="flex items-center gap-1 text-[13px] text-gray-600">
                 <span className="text-yellow-500">●</span>
-                <span className="font-medium">0</span>
+                <span className="font-medium">125</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Row 2: Search, User, More, Cart */}
-        <div className="max-w-[1248px] mx-auto px-3 md:px-4 flex items-center justify-between h-[46px] gap-4">
+        <div className="max-w-[1248px] mx-auto px-3 md:px-4 flex items-center justify-between h-[52px] gap-4 pb-1">
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[680px] relative">
-            <div className="w-full flex items-center border border-gray-300 rounded-[4px] hover:border-gray-400 focus-within:border-[#2874f0] transition-colors">
+            <div className="w-full flex items-center border-2 border-[#2874f0] rounded-[8px] shadow-sm shadow-blue-100 transition-colors">
               <div className="pl-3 text-gray-400">
                 <Search size={18} />
               </div>

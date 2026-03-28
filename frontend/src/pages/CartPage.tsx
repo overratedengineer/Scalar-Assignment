@@ -1,10 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ShieldCheck } from 'lucide-react';
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, summary, fetchCart } = useCart();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = 'Shopping Cart | Flipkart.com'; }, []);
 
   if (cart.length === 0) {
     return (

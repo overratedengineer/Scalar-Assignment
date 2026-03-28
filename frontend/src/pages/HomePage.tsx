@@ -31,13 +31,23 @@ export default function HomePage() {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
+    if (searchQuery) {
+      document.title = `${searchQuery} - Flipkart Search`;
+    } else if (categoryFilter) {
+      document.title = `${categoryFilter} - Flipkart.com`;
+    } else {
+      document.title = 'Flipkart - Online Shopping India';
+    }
+  }, [searchQuery, categoryFilter]);
+
+  useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const params = new URLSearchParams();
         if (searchQuery) params.append('search', searchQuery);
         if (categoryFilter && categoryFilter !== 'For You') params.append('category', categoryFilter.toLowerCase());
-        
+
         const res = await api.get(`/products?${params.toString()}`);
         setProducts(res.data.data || []);
       } catch (err) {
@@ -86,7 +96,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <main className="max-w-[1248px] mx-auto flex flex-col gap-2.5 pt-2.5 pb-6 px-0">
+      <main className="max-w-[1248px] mx-auto flex flex-col gap-4 md:gap-5 pt-4 md:pt-5 pb-6 px-0">
         {/* ===== HOMEPAGE CONTENT ===== */}
         {!searchQuery && !categoryFilter && (
           <>
@@ -105,7 +115,7 @@ export default function HomePage() {
             </div>
 
             {/* Two-panel promotional section */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-2.5 mx-2">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 mx-2">
               {/* Aquaguard */}
               <div className="md:col-span-4 bg-white rounded-[10px] overflow-hidden relative shadow-sm cursor-pointer" onClick={() => setShowComingSoon(true)}>
                 <img
@@ -115,12 +125,12 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4 text-white">
                   <h3 className="text-[10px] font-bold opacity-80 uppercase tracking-wider">True Wireless</h3>
-                  <h2 className="text-sm md:text-lg font-black leading-tight mt-0.5">Best in Class Sound<br/>Up to 70% Off*</h2>
+                  <h2 className="text-sm md:text-lg font-black leading-tight mt-0.5">Best in Class Sound<br />Up to 70% Off*</h2>
                   <p className="text-[9px] opacity-60 mt-0.5">Top brands at unbeatable prices</p>
                 </div>
                 <div className="absolute top-2 right-2 bg-white/90 px-1.5 py-0.5 rounded text-[9px] text-gray-500 font-bold">AD</div>
               </div>
-              
+
               {/* Best of Electronics */}
               <div className="md:col-span-8 bg-white rounded-[10px] overflow-hidden shadow-sm cursor-pointer" onClick={() => setShowComingSoon(true)}>
                 <img
@@ -178,14 +188,14 @@ export default function HomePage() {
         <div className="flex flex-col gap-2.5 mx-2">
           <div className="flex justify-between items-center bg-white px-4 py-3 rounded-[10px] shadow-sm">
             <h2 className="text-[16px] font-bold text-gray-900">
-              {searchQuery ? `Search results for "${searchQuery}"` : 
-               categoryFilter ? `${categoryFilter}` : "Suggested For You"}
+              {searchQuery ? `Search results for "${searchQuery}"` :
+                categoryFilter ? `${categoryFilter}` : "Suggested For You"}
             </h2>
             <div className="bg-[#2874f0] text-white rounded-full p-1.5 cursor-pointer hover:bg-[#1a5abd] transition-colors">
               <ArrowRight size={16} />
             </div>
           </div>
-          
+
           {loading ? (
             <div className="flex justify-center items-center py-20 bg-white rounded-[10px] shadow-sm">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2874f0]"></div>

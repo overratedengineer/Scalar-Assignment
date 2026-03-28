@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../api';
@@ -13,6 +13,8 @@ export default function SignupPage() {
   
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = 'Sign Up | Flipkart.com'; }, []);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();

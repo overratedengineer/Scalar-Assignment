@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -13,12 +14,19 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import WishlistPage from './pages/WishlistPage';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <AuthProvider>
       <WishlistProvider>
         <CartProvider>
           <Router>
+            <ScrollToTop />
             <div className="min-h-screen flex flex-col font-sans">
             <Header />
           <div className="flex-1">

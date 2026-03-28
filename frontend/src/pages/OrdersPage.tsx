@@ -8,6 +8,10 @@ export default function OrdersPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'My Orders | Flipkart.com';
+  }, []);
+
+  useEffect(() => {
     const fetchOrders = async () => {
       try {
         const res = await api.get('/orders');

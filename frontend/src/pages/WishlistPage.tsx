@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useWishlist } from '../context/WishlistContext';
 import ProductCard from '../components/ProductCard';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,8 @@ import { Heart } from 'lucide-react';
 
 export default function WishlistPage() {
   const { wishlistItems, isLoading } = useWishlist();
+
+  useEffect(() => { document.title = 'My Wishlist | Flipkart.com'; }, []);
 
   return (
     <div className="bg-[#f1f3f6] min-h-screen py-4 md:py-8 px-2 md:px-0">

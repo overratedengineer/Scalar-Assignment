@@ -1,8 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { CheckCircle2, Package, Truck, Calendar } from 'lucide-react';
 
 export default function OrderConfirmationPage() {
   const { orderId } = useParams();
+
+  useEffect(() => { document.title = 'Order Confirmed | Flipkart.com'; }, []);
 
   return (
     <div className="bg-[#f1f3f6] min-h-screen py-4 md:py-10 px-3 md:px-4">

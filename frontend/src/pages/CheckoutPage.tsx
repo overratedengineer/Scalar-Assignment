@@ -47,6 +47,10 @@ export default function CheckoutPage() {
   };
 
   useEffect(() => {
+    document.title = 'Secure Checkout | Flipkart.com';
+  }, []);
+
+  useEffect(() => {
     if (cart.length === 0 && !loading) {
       navigate('/');
     }

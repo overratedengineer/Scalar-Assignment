@@ -19,6 +19,9 @@ export default function ProductDetailPage() {
         const res = await api.get(`/products/${id}`);
         const p = res.data.data;
         setProduct(p);
+        if (p?.name) {
+          document.title = `${p.name} - Buy Online at Best Price | Flipkart.com`;
+        }
         if (p?.images?.length > 0) {
           setActiveImage(p.images[0].url);
         }
@@ -60,7 +63,7 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="bg-[#f1f3f6] min-h-screen pb-24 md:pb-10">
+    <div className="bg-[#f1f3f6] min-h-screen pt-4 md:pt-5 pb-24 md:pb-10">
       <div className="max-w-7xl mx-auto bg-white p-3 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8 shadow-sm">
         {/* Left Column: Images */}
         <div className="w-full md:w-2/5 flex flex-col gap-3 md:gap-4 md:sticky md:top-24 md:self-start">
