@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "Flipkart Clone API",
+    "description": "API collection for the Flipkart Clone Backend Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/products/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "products", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Get All Products (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/products?page=1&limit=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "products"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search & Filter Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/products?search=Samsung&category=mobiles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "products"],
+              "query": [
+                { "key": "search", "value": "Samsung" },
+                { "key": "category", "value": "mobiles" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/products/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "products", ":id"],
+              "variable": [
+                { "key": "id", "value": "<REPLACE_WITH_PRODUCT_ID>" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Get Cart Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/cart",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "cart"]
+            }
+          }
+        },
+        {
+          "name": "Add Item to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<REPLACE_WITH_PRODUCT_ID>\",\n  \"quantity\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/cart",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "cart"]
+            }
+          }
+        },
+        {
+          "name": "Update Cart Item Quantity",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/cart/:cartItemId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "cart", ":cartItemId"],
+              "variable": [
+                { "key": "cartItemId", "value": "<REPLACE_WITH_CART_ITEM_ID>" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove Item from Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/cart/:cartItemId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "cart", ":cartItemId"],
+              "variable": [
+                { "key": "cartItemId", "value": "<REPLACE_WITH_CART_ITEM_ID>" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Place Order (Checkout from Cart)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shippingAddress\": \"123 E-commerce Avenue, Tech City, 10001\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Buy Now (Skip Cart)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<REPLACE_WITH_PRODUCT_ID>\",\n  \"quantity\": 1,\n  \"shippingAddress\": \"456 Express Lane, Quick City, 20002\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5001/api/orders/buy-now",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "orders", "buy-now"]
+            }
+          }
+        },
+        {
+          "name": "Get Order History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/orders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order Confirmation Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5001/api/orders/:orderId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5001",
+              "path": ["api", "orders", ":orderId"],
+              "variable": [
+                { "key": "orderId", "value": "<REPLACE_WITH_ORDER_ID>" }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
